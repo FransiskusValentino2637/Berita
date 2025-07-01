@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin Berita</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-accent: #2c3e50; /* Dark Blue/Charcoal */
+            --secondary-light: #ecf0f1; /* Light Gray */
+            --text-dark: #34495e; /* Darker Blue-Gray */
+            --text-light: #ffffff;
+            --border-soft: #ddd;
+            --shadow-light: rgba(0, 0, 0, 0.15);
+            --transition-speed: 0.3s ease;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden; /* Mencegah scroll yang tidak diinginkan */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            backdrop-filter: blur(8px); /* Blur effect */
+            z-index: 1;
+        }
+
+        /* Animasi Fade-in untuk elemen utama */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 2;
+            animation: fadeInScale 0.8s forwards ease-out;
+            animation-delay: 0.2s;
+            opacity: 0; /* Start hidden for animation */
+        }
+
+        .login-card {
+            background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan untuk efek */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px var(--shadow-light);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            backdrop-filter: blur(5px); /* Sedikit blur di card juga */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Border halus */
+        }
+
+        .login-card h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-accent);
+            font-weight: 700;
+            margin-bottom: 35px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        .login-card h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 1px solid var(--border-soft);
+            background-color: var(--secondary-light); /* Background input yang sedikit abu-abu */
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 0.25rem rgba(44, 62, 80, 0.25);
+            background-color: var(--text-light); /* Lebih terang saat fokus */
+        }
+
+        .btn-primary {
+            background-color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            background-color: #34495e;
+            border-color: #34495e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .alert {
+            margin-top: 25px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            padding: 15px;
+            animation: fadeInScale 0.5s forwards;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 40px 30px;
+                border-radius: 10px;
+            }
+            .login-card h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .form-control {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            .btn-primary {
+                padding: 12px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 30px 20px;
+            }
+            .login-card h2 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2>Masuk Admin</h2>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="Email Admin" required>
+                </div>
+                <div class="mb-4">
+                    <input type="password" id="password" class="form-control" placeholder="Password Admin" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" id="loginBtn">Login</button>
+            </form>
+            <div id="message" class="mt-3"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="module" src="login.js"></script>
+</body>
+</html>
